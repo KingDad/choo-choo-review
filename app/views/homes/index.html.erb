@@ -2,3 +2,14 @@
   Modify me in `app/views/homes/index.html.erb` or change the root directive in
   `config/routes.rb`
 </p>
+
+<h1>CHOO CHOO REVIEW</h1>
+<h2>All Available Lines:</h2>
+
+<div>
+  <% @trains.each do |train| %>
+  <li>
+    <%= link_to train.name, train_path(train) %>
+  </li>
+  <% end %>
+</div>
