@@ -1,13 +1,13 @@
 import React from 'react'
+import { Route, IndexRoute, Router, browserHistory } from 'react-router';
 
 import Train from './Train'
 
 export const App = (props) => {
   return (
-    <div>
-      <h1>Make It So React</h1>
-      <Train />
-    </div>
+      <Router history={browserHistory}>
+        <Route path="/trains/:id" component={Train} />
+      </Router>
   )
 }
 

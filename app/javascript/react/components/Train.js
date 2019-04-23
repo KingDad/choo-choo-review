@@ -9,7 +9,8 @@ class Train extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/v1/trains/13')
+    let trainId = this.props.params.id
+    fetch(`/api/v1/trains/${trainId}`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -21,6 +22,7 @@ class Train extends Component {
       })
       .then(response => response.json())
       .then(response => {
+        debugger
         this.setState( {
           train: response.train
         } )
