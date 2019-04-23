@@ -1,7 +1,7 @@
 class TrainsController < ApplicationController
 
   def index
-    @trains = Trains.all
+    @trains = Train.all
   end
 
   def show
