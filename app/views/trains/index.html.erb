@@ -3,8 +3,8 @@
 
 <div>
   <% @trains.each do |train| %>
-  <li>
+    <li>
     <%= link_to train.name, train_path(train) %>
-  </li>
+    </li>
   <% end %>
 </div>
