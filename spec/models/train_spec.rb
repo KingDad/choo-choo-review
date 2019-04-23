@@ -2,6 +2,13 @@ require 'rails_helper'
 
 
 describe Train do
+  it { should have_valid(:name).when("Super Line") }
+  it { should_not have_valid(:name).when('', nil) }
+  it { should have_valid(:description).when("It's a really good train to get you somewhere") }
+  it { should_not have_valid(:description).when("", nil) }
+  it { should have_valid(:founding_year).when('1990-01-01') }
+  it {should_not have_valid(:founding_year).when('', nil)}
+
   let(:train) {Train.create(name: 'Red Line', description: 'Its on fire!', founding_year: '1990-01-01')}
   it 'will create a model for a train object' do
     expect(train.name).to eq('Red Line')
