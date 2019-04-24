@@ -5,19 +5,13 @@ class ReviewsController < ApplicationController
   def new
     @train = Train.find(params[:train_id])
     @review = Review.new
-    @rating_collection = [
-      [1, "1"],
-      [2, "2"],
-      [3, "3"],
-      [4, "4"],
-      [5, "5"]
-     ]
+    @rating_collection = Review::RATINGS
 
   end
 
   def create
     @train = Train.find(params[:train_id])
-    @reviews = Review.new(review_params)
+    @review = Review.new(review_params)
     @review.train = @train
 
     if @review.save
@@ -25,6 +19,7 @@ class ReviewsController < ApplicationController
       redirect_to @review.train
     else
       flash[:error] = @review.errors.full_messages.to_sentence
+      @rating_collection = Review::RATINGS
       render :new
     end
   end

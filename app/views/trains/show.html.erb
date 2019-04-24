@@ -7,7 +7,7 @@
   <% @reviews.each do |review| %>
     <li>
      Rating: <%= review.rating %>
-     description: <%= review.body %>
+     description: <%= review.description %>
      Review date: <%= review.created_at.strftime("%B %d %Y") %>
     </li>
   <% end %>
