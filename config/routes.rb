@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root 'trains#index'
   devise_for :users
 
-  resources :trains
+  resources :trains, only: [:index, :show, :new, :create] do
+    resources :reviews, only: [:new, :create, :show]
+  end
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

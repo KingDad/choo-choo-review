@@ -1,2 +1,19 @@
 <h1> <%= @train.name %>, founded in <%= @train.founding_year %> </h1>
 <p> <%= @train.description %> </p>
+
+<h3>Reviews:</h3>
+
+<ul>
+  <% @reviews.each do |review| %>
+    <li>
+     Rating: <%= review.rating %>
+     description: <%= review.body %>
+     Review date: <%= review.created_at.strftime("%B %d %Y") %>
+    </li>
+  <% end %>
+</ul>
+
+<br>
+<%= link_to "Add a Review", new_train_review_path(@train) %>
+<br>
+<%= link_to "Back to home page", root_path %>

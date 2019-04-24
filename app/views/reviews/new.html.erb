@@ -1,0 +1,14 @@
+<h1>Add a New Review for <%=@train.name%></h1>
+
+<%= form_for [@train, @review] do |f| %>
+
+  <%= f.label :rating, "Rating" %>
+  <%= f.collection_radio_buttons(:rating, @rating_collection, :first, :last) %>
+
+  <%= f.label :description, "Description" %>
+  <%= f.text_field :description %>
+
+
+  <%= f.submit "Add Review" %>
+
+<% end %>
