@@ -30,4 +30,18 @@ feature "Train new page" do
     click_button 'Add Train'
     expect(page).to have_content('Fun Line')
   end
+
+  scenario "Admin submits a train unsuccessfully" do
+    user = User.create(email: 'goodGuy@goodmail.com', password: 'iamsonice', password_confirmation: 'iamsonice', role: 'admin')
+    visit '/'
+    click_on 'Sign In'
+    fill_in 'Email', with: 'goodGuy@goodmail.com'
+    fill_in 'Password', with: 'iamsonice'
+    click_on 'Log in'
+    visit '/trains/new'
+    click_button 'Add Train'
+    expect(page).to have_content("Name can't be blank")
+    expect(page).to have_content("Description can't be blank")
+    expect(page).to have_content("Founding year can't be blank")
+  end
 end

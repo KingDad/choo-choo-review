@@ -2,7 +2,11 @@
 <%= form_for(@train) do |f| %>
   <ul>
     <% @train.errors.each do |error, message| %>
-      <li><%= "#{error.capitalize} #{message}" %></li>
+      <% if error == :founding_year %>
+        <li><%= "#{error.to_s.gsub("_", " ").capitalize} #{message}" %></li>
+      <% else %>
+        <li><%= "#{error.capitalize} #{message}" %></li>
+      <% end %>
     <% end %>
   </ul>
 
