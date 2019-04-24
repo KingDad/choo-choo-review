@@ -3,11 +3,7 @@ require 'rails_helper'
 feature "Train new page" do
   scenario "Admin visits new page" do
     user = User.create(email: 'goodGuy@goodmail.com', password: 'iamsonice', password_confirmation: 'iamsonice', role: 'admin')
-    visit '/'
-    click_on 'Sign In'
-    fill_in 'Email', with: 'goodGuy@goodmail.com'
-    fill_in 'Password', with: 'iamsonice'
-    click_on 'Log in'
+    sign_in(user)
     visit '/trains/new'
     expect(page).to have_content("New Train Form")
     expect(page).to have_content("Name of Train")
@@ -18,11 +14,7 @@ feature "Train new page" do
 
   scenario "Admin submits a train successfully" do
     user = User.create(email: 'goodGuy@goodmail.com', password: 'iamsonice', password_confirmation: 'iamsonice', role: 'admin')
-    visit '/'
-    click_on 'Sign In'
-    fill_in 'Email', with: 'goodGuy@goodmail.com'
-    fill_in 'Password', with: 'iamsonice'
-    click_on 'Log in'
+    sign_in(user)
     visit '/trains/new'
     fill_in 'Name of Train', with: 'Fun Line'
     fill_in 'Description', with: "It's a party up in here!"
@@ -33,11 +25,7 @@ feature "Train new page" do
 
   scenario "Admin submits a train unsuccessfully" do
     user = User.create(email: 'goodGuy@goodmail.com', password: 'iamsonice', password_confirmation: 'iamsonice', role: 'admin')
-    visit '/'
-    click_on 'Sign In'
-    fill_in 'Email', with: 'goodGuy@goodmail.com'
-    fill_in 'Password', with: 'iamsonice'
-    click_on 'Log in'
+    sign_in(user)
     visit '/trains/new'
     click_button 'Add Train'
     expect(page).to have_content("Name can't be blank")

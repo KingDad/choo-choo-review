@@ -22,7 +22,6 @@ class Train extends Component {
       })
       .then(response => response.json())
       .then(response => {
-        debugger
         this.setState( {
           train: response.train
         } )
@@ -31,7 +30,6 @@ class Train extends Component {
   }
 
   render() {
-    debugger
     return (
       <h1> {this.state.train.name} </h1>
     )
