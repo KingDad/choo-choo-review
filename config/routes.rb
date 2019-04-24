@@ -9,6 +9,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :trains, only: [:index, :show]
+  resources :trains, only: [:index, :show, :new, :create]
 
 end
