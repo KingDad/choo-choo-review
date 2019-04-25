@@ -20,7 +20,6 @@ class ReviewsController < ApplicationController
       redirect_to @review.train
     else
       flash[:error] = @review.errors.full_messages.to_sentence
-      #@rating_collection = Review::RATINGS
       render :new
     end
   end
@@ -33,7 +32,8 @@ class ReviewsController < ApplicationController
 
   def authorize_user
     if !user_signed_in?
-      flash[:notice] = "You do not have access to this page"
+      flash[:notice] = "You need to login or sign up to submit a review"
+        redirect_to '/users/sign_up'
     end
   end
 
