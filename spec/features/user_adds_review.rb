@@ -30,7 +30,6 @@ require 'rails_helper'
      click_on 'Add Review'
 
     expect(page).to have_content("Review added successfully!")
-    expect(page).to have_content("Rating: 1")
    end
 
    scenario 'user adds a review while signed in, but does not provide rating' do
