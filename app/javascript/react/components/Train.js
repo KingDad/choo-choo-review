@@ -22,7 +22,6 @@ class Train extends Component {
       })
       .then(response => response.json())
       .then(response => {
-        console.log(response)
         this.setState( {
           train: response.train
         } )
