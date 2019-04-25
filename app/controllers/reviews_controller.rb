@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
   def new
     @train = Train.find(params[:train_id])
     @review = Review.new
-    @rating_collection = Review::RATINGS
+    @review.user = current_user
 
   end
 
@@ -13,13 +13,14 @@ class ReviewsController < ApplicationController
     @train = Train.find(params[:train_id])
     @review = Review.new(review_params)
     @review.train = @train
+    @review.user = current_user
 
     if @review.save
       flash[:notice] = "Review added successfully!"
       redirect_to @review.train
     else
       flash[:error] = @review.errors.full_messages.to_sentence
-      @rating_collection = Review::RATINGS
+      #@rating_collection = Review::RATINGS
       render :new
     end
   end

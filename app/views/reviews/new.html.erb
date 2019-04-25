@@ -3,7 +3,11 @@
 <%= form_for [@train, @review] do |f| %>
 
   <%= f.label :rating, "Rating" %>
-  <%= f.collection_radio_buttons(:rating, @rating_collection, :first, :last) %>
+  <%=  f.collection_radio_buttons(
+      :rating, [[1, '1'] ,[2, '2'],[3, '3'],[4, '4'],[5, '5']], :first, :last
+    ) do |b|
+      b.label { b.radio_button + b.text }
+      end %>
 
   <%= f.label :description, "Description" %>
   <%= f.text_field :description %>
