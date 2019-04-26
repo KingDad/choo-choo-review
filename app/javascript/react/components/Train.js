@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Review from './Review'
 
 class Train extends Component {
   constructor(props) {
@@ -30,8 +31,22 @@ class Train extends Component {
   }
 
   render() {
+    let reviews
+
+    if (this.state.train.reviews) {
+    reviews = this.state.train.reviews.map(review => {
+      return (
+        <Review key={review.id} review={review} />
+      )
+    })
+  }
+
     return (
-      <h1> {this.state.train.name} </h1>
+      <div>
+        <h1> {this.state.train.name} </h1>
+        { reviews }
+        <a href={`/trains/${this.state.train.id}/reviews/new`}>Review This Train</a>
+      </div>
     )
   }
 }
