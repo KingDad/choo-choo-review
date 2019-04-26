@@ -1,5 +1,4 @@
 class TrainsController < ApplicationController
-
   before_action :authorize_user, except: [:index, :show]
 
   def index
@@ -39,5 +38,4 @@ class TrainsController < ApplicationController
       redirect_to '/users/sign_in'
     end
   end
-
 end

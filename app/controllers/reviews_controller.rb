@@ -1,7 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authorize_user
 
-
   def new
     @train = Train.find(params[:train_id])
     @review = Review.new

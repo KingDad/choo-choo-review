@@ -4,7 +4,6 @@ import jasmineEnzyme from 'jasmine-enzyme'
 import React from 'react'
 import fetchMock from 'fetch-mock'
 
-
 describe('train component', () => {
   let wrapper
   let batTrain
