@@ -26,7 +26,6 @@ class Train extends Component {
         this.setState( {
           train: response.train
         } )
-        console.log(this.state.train)
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
