@@ -20,7 +20,7 @@ feature "Train new page" do
     fill_in 'Description', with: "It's a party up in here!"
     fill_in 'Founding Date', with: "2019-11-11"
     click_button 'Add Train'
-    expect(page).to have_content('Fun Line')
+    expect(page).to have_content('Train added successfully!')
   end
 
   scenario "Admin submits a train unsuccessfully" do
