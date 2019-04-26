@@ -15,6 +15,17 @@ ActiveRecord::Schema.define(version: 2019_04_26_182203) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating", null: false
+    t.text "description"
+    t.bigint "train_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["train_id"], name: "index_reviews_on_train_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "trains", force: :cascade do |t|
     t.string "name", null: false
     t.string "description", null: false
