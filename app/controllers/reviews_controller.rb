@@ -6,7 +6,6 @@ class ReviewsController < ApplicationController
     @train = Train.find(params[:train_id])
     @review = Review.new
     @review.user = current_user
-
   end
 
   def create
@@ -33,9 +32,7 @@ class ReviewsController < ApplicationController
   def authorize_user
     if !user_signed_in?
       flash[:notice] = "You need to login or sign up to submit a review"
-        redirect_to '/users/sign_up'
+      redirect_to '/users/sign_up'
     end
   end
-
-
 end

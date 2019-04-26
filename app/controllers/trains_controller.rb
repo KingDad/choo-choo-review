@@ -17,7 +17,6 @@ class TrainsController < ApplicationController
 
   def create
     @train = Train.new(train_params)
-
     if @train.save
       flash[:notice] = "Train added successfully!"
       redirect_to @train
