@@ -1,0 +1,38 @@
+body{
+  font-family: 'Roboto Condensed', sans-serif;
+}
+h1, h2{
+  font-family: 'Oswald', sans-serif;
+  padding-left: 12.5%;
+}
+form{
+  margin: 0 auto;
+  width: 75%;
+}
+.container{
+  margin: 0 auto;
+  width: 75%;
+}
+.container>h1, .container>h2, .react-header{
+  margin: 0;
+  padding: 0;
+}
+.review{
+
+}
+.react-header{
+  color: #ffffff;
+  padding-left: 1em;
+}
+.red{
+  background-color: #d9281c;
+}
+.green{
+  background-color: #00843d;
+}
+.orange{
+  background-color: #ed8b01;
+}
+.blue{
+  background-color: #003ca5;
+}
