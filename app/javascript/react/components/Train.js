@@ -4,6 +4,7 @@ import Review from './Review'
 class Train extends Component {
   constructor(props) {
     super(props);
+    this.handleUpVote = this.handleUpVote.bind(this)
     this.state = {
       train: {}
     }
@@ -30,6 +31,35 @@ class Train extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  handleUpVote(reviewID){
+    fetch(`/api/v1/votes`, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({review_id: reviewID, type: 'up'})
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status}(${response.statusText})` ,
+          error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  handleDownVote(){
+
+  }
+
   render() {
     let reviews
     let lineName
@@ -38,7 +68,7 @@ class Train extends Component {
     if (this.state.train.reviews) {
       reviews = this.state.train.reviews.map(review => {
         return (
-          <Review key={review.id} review={review} />
+          <Review key={review.id} review={review} color={this.state.train.name} handleUpVote={this.handleUpVote}/>
         )
       })
       if (this.state.train.reviews.length > 0) {
