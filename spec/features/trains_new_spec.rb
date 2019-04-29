@@ -5,7 +5,7 @@ feature "Train new page" do
     user = User.create(email: 'goodGuy@goodmail.com', password: 'iamsonice', password_confirmation: 'iamsonice', role: 'admin')
     sign_in(user)
     visit '/trains/new'
-    expect(page).to have_content("New Train Form")
+    expect(page).to have_content("NEW TRAIN FORM")
     expect(page).to have_content("Name of Train")
     expect(page).to have_content("Description")
     expect(page).to have_content("Founding Date")
