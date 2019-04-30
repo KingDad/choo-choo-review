@@ -7,7 +7,9 @@ class Train extends Component {
     this.handleUpVote = this.handleUpVote.bind(this)
     this.handleDownVote = this.handleDownVote.bind(this)
     this.state = {
-      train: {}
+      train: {},
+      userID: null,
+      reviews: []
     }
   }
 
@@ -25,8 +27,12 @@ class Train extends Component {
       })
       .then(response => response.json())
       .then(response => {
+        let train = response.train
+        console.log(response.train.reviews[0].votes[0].user_id)
         this.setState( {
-          train: response.train
+          train: train,
+          userID: train.user_id,
+          reviews: train.reviews
         } )
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -36,7 +42,7 @@ class Train extends Component {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     fetch(`/api/v1/votes`, {
       method: 'POST',
-      body: JSON.stringify({review_id: reviewID, vote_type: 'up'}),
+      body: JSON.stringify({review_id: reviewID, user_id: this.state.userID, vote_type: 'up'}),
       headers: {
         'Content-Type': 'application/json',
         'X-CSRF-Token': csrfToken
@@ -62,7 +68,7 @@ class Train extends Component {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     fetch(`/api/v1/votes`, {
       method: 'POST',
-      body: JSON.stringify({review_id: reviewID, vote_type: 'down'}),
+      body: JSON.stringify({review_id: reviewID, user_id: this.state.userID, vote_type: 'down'}),
       headers: {
         'Content-Type': 'application/json',
         'X-CSRF-Token': csrfToken
@@ -90,9 +96,16 @@ class Train extends Component {
     let reviewsHeaderText
 
     if (this.state.train.reviews) {
-      reviews = this.state.train.reviews.map(review => {
+      reviews = this.state.reviews.map(review => {
         return (
-          <Review key={review.id} review={review} color={this.state.train.name} handleUpVote={this.handleUpVote} handleDownVote={this.handleDownVote}/>
+          <Review
+            key={review.id}
+            review={review}
+            color={this.state.train.name}
+            handleUpVote={this.handleUpVote}
+            handleDownVote={this.handleDownVote}
+            userID={this.state.userID}
+          />
         )
       })
       if (this.state.train.reviews.length > 0) {
