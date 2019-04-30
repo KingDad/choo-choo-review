@@ -5,6 +5,7 @@ class Train extends Component {
   constructor(props) {
     super(props);
     this.handleUpVote = this.handleUpVote.bind(this)
+    this.handleDownVote = this.handleDownVote.bind(this)
     this.state = {
       train: {}
     }
@@ -32,13 +33,15 @@ class Train extends Component {
   }
 
   handleUpVote(reviewID){
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     fetch(`/api/v1/votes`, {
       method: 'POST',
-      credentials: 'same-origin',
+      body: JSON.stringify({review_id: reviewID, vote_type: 'up'}),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
       },
-      body: JSON.stringify({review_id: reviewID, type: 'up'})
+      credentials: 'same-origin'
     })
       .then(response => {
         if (response.ok) {
@@ -49,15 +52,36 @@ class Train extends Component {
           throw(error);
         }
       })
-      .then(response => response.json())
       .then(response => {
         console.log(response)
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  handleDownVote(){
-
+  handleDownVote(reviewID){
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    fetch(`/api/v1/votes`, {
+      method: 'POST',
+      body: JSON.stringify({review_id: reviewID, vote_type: 'down'}),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      credentials: 'same-origin'
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status}(${response.statusText})` ,
+          error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   render() {
@@ -68,7 +92,7 @@ class Train extends Component {
     if (this.state.train.reviews) {
       reviews = this.state.train.reviews.map(review => {
         return (
-          <Review key={review.id} review={review} color={this.state.train.name} handleUpVote={this.handleUpVote}/>
+          <Review key={review.id} review={review} color={this.state.train.name} handleUpVote={this.handleUpVote} handleDownVote={this.handleDownVote}/>
         )
       })
       if (this.state.train.reviews.length > 0) {

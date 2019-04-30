@@ -9,7 +9,7 @@ class Review < ApplicationRecord
   def up_votes
     up_votes = 0
     votes.each do |vote|
-      if vote.type == 'up'
+      if vote.vote_type == 'up'
         up_votes += 1
       end
     end
@@ -19,7 +19,7 @@ class Review < ApplicationRecord
   def down_votes
     down_votes = 0
     votes.each do |vote|
-      if vote.type == 'down'
+      if vote.vote_type == 'down'
         down_votes += 1
       end
     end
