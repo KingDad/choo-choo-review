@@ -49,3 +49,18 @@ p{
 .blue{
   background-color: #003ca5;
 }
+button{
+  border-radius: 6px;
+  color: #ffffff;
+  font-family: 'Roboto Condensed', sans-serif;
+  margin: 0.5em 1em;
+}
+button>i{
+  padding: 0 1em;
+}
+button:active{
+  outline: none;
+}
+button:focus{
+  outline: none;
+}

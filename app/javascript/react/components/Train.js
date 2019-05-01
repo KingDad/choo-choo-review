@@ -4,8 +4,12 @@ import Review from './Review'
 class Train extends Component {
   constructor(props) {
     super(props);
+    this.handleUpVote = this.handleUpVote.bind(this)
+    this.handleDownVote = this.handleDownVote.bind(this)
     this.state = {
-      train: {}
+      train: {},
+      userID: null,
+      reviews: []
     }
   }
 
@@ -23,9 +27,65 @@ class Train extends Component {
       })
       .then(response => response.json())
       .then(response => {
+        console.log(response)
+        let train = response.train
         this.setState( {
-          train: response.train
+          train: train,
+          userID: train.user_id,
+          reviews: train.reviews
         } )
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  handleUpVote(reviewID){
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    fetch(`/api/v1/votes`, {
+      method: 'POST',
+      body: JSON.stringify({review_id: reviewID, user_id: this.state.userID, vote_type: 'up'}),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      credentials: 'same-origin'
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status}(${response.statusText})` ,
+          error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  handleDownVote(reviewID){
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    fetch(`/api/v1/votes`, {
+      method: 'POST',
+      body: JSON.stringify({review_id: reviewID, user_id: this.state.userID, vote_type: 'down'}),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      credentials: 'same-origin'
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status}(${response.statusText})` ,
+          error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => {
+        console.log(response)
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -36,9 +96,16 @@ class Train extends Component {
     let reviewsHeaderText
 
     if (this.state.train.reviews) {
-      reviews = this.state.train.reviews.map(review => {
+      reviews = this.state.reviews.map(review => {
         return (
-          <Review key={review.id} review={review} />
+          <Review
+            key={review.id}
+            review={review}
+            color={this.state.train.name}
+            handleUpVote={this.handleUpVote}
+            handleDownVote={this.handleDownVote}
+            userID={this.state.userID}
+          />
         )
       })
       if (this.state.train.reviews.length > 0) {
