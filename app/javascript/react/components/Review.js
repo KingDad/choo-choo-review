@@ -10,8 +10,8 @@ class Review extends Component {
     this.state = {
       upVotes: this.props.review.up_votes,
       downVotes: this.props.review.down_votes,
-      selectedVoteType: this.props.review.current_user_vote_type,
-      dummyVote: false
+      selectedVoteType: this.props.review.current_user_vote_type
+      // dummyVote: false
     }
   }
 
@@ -36,9 +36,9 @@ class Review extends Component {
     //     // voteType = vote.vote_type
     //   }
     // })
-    if (!voteType) {
-      this.setState({dummyVote: true})
-    }
+    // if (!voteType) {
+    //   this.setState({dummyVote: true})
+    // }
     this.props.handleUpVote(this.grabID())
     if (this.state.selectedVoteType === "up") {
       newUpVotes -= 1
@@ -66,17 +66,17 @@ class Review extends Component {
   clickDownVote(){
     let newUpVotes = this.state.upVotes
     let newDownVotes = this.state.downVotes
-    let voteID = null
-    let voteType = ""
-    this.props.review.votes.forEach(vote =>{
-      if (this.getVoteID(vote)) {
-        voteID = vote.id
-        voteType = vote.vote_type
-      }
-    })
-    if (!voteID && this.state.dummyVote === false) {
-      this.setState({dummyVote: true})
-    }
+    // let voteID = null
+    let voteType = this.state.selectedVoteType
+    // this.props.review.votes.forEach(vote =>{
+    //   if (this.getVoteID(vote)) {
+    //     voteID = vote.id
+    //     voteType = vote.vote_type
+    //   }
+    // })
+    // if (!voteID && this.state.dummyVote === false) {
+    //   this.setState({dummyVote: true})
+    // }
     this.props.handleDownVote(this.grabID())
     if (this.state.selectedVoteType === "down") {
       newDownVotes -= 1
