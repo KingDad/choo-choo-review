@@ -27,8 +27,8 @@ class Train extends Component {
       })
       .then(response => response.json())
       .then(response => {
+        console.log(response)
         let train = response.train
-        console.log(response.train.reviews[0].votes[0].user_id)
         this.setState( {
           train: train,
           userID: train.user_id,
