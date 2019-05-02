@@ -48,11 +48,7 @@ ActiveRecord::Schema.define(version: 2019_04_29_152436) do
   end
 
   create_table "votes", force: :cascade do |t|
-<<<<<<< HEAD
-    t.string "type", null: false
-=======
     t.string "vote_type", null: false
->>>>>>> 7a130f3bbe6107aaf90adb591944437443027448
     t.bigint "user_id", null: false
     t.bigint "review_id", null: false
     t.datetime "created_at", null: false

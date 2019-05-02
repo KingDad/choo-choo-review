@@ -13,15 +13,15 @@ describe('train component', () => {
     batTrain = {train:
       {id: 1, name: "Bat Train", description: "NaNaNaNaNa Bat Train", founding_year: "2020-03-27",
         reviews: [
-          {id:1, rating: 4, description: "Wow good", train_id: 1, user_id: 1, up_votes: 1, down_votes: 0
+          {id:1, rating: 4, description: "Wow good", train_id: 1, user_id: 1, up_votes: 1, down_votes: 1,
           votes:[
             {id: 1, vote_type: "up", user_id: 3, review_id: 1},
             {id: 2, vote_type: "down",user_id: 2, review_id: 1}
           ]
         },
-          {id:2, rating: 5, description: "TRAINS RULE!", train_id: 1, user_id: 42, up_votes: 2, down_votes: 0
+          {id:2, rating: 5, description: "TRAINS RULE!", train_id: 1, user_id: 42, up_votes: 2, down_votes: 0,
           votes:[
-            {id: 3, vote_type: "up",user_id: 42, review_id: 2}
+            {id: 3, vote_type: "up",user_id: 42, review_id: 2},
             {id: 4, vote_type: "up",user_id: 4, review_id: 2}
           ]}
         ]
@@ -49,8 +49,6 @@ describe('train component', () => {
         expect(wrapper.text()).toMatch(batTrain.train.reviews[0].rating.toString())
         expect(wrapper.text()).toMatch(batTrain.train.reviews[1].description)
         expect(wrapper.text()).toMatch(batTrain.train.reviews[1].rating.toString())
-        expect(wrapper.text()).toMatch(batTrain.train.reviews[0].up_votes.toString())
-        expect(wrapper.text()).toMatch(batTrain.train.reviews[1].down_votes.toString())
 
         done()
       }, 0)
