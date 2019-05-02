@@ -6,6 +6,8 @@ class Train extends Component {
     super(props);
     this.handleUpVote = this.handleUpVote.bind(this)
     this.handleDownVote = this.handleDownVote.bind(this)
+    // this.handleUpVoteUpdate = this.handleUpVoteUpdate.bind(this)
+    // this.handleDownVoteUpdate = this.handleDownVoteUpdate.bind(this)
     this.state = {
       train: {},
       userID: null,
@@ -64,6 +66,32 @@ class Train extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  // handleUpVoteUpdate(reviewID){
+  //   const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+  //   fetch(`/api/v1/votes`, {
+  //     method: 'PUT',
+  //     body: JSON.stringify({review_id: reviewID, user_id: this.state.userID, vote_type: 'up'}),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'X-CSRF-Token': csrfToken
+  //     },
+  //     credentials: 'same-origin'
+  //   })
+  //     .then(response => {
+  //       if (response.ok) {
+  //         return response;
+  //       } else {
+  //         let errorMessage = `${response.status}(${response.statusText})` ,
+  //         error = new Error(errorMessage);
+  //         throw(error);
+  //       }
+  //     })
+  //     .then(response => {
+  //       console.log(response)
+  //     })
+  //     .catch(error => console.error(`Error in fetch: ${error.message}`));
+  // }
+
   handleDownVote(reviewID){
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     fetch(`/api/v1/votes`, {
@@ -89,6 +117,32 @@ class Train extends Component {
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
+
+  // handleDownVoteUpdate(reviewID){
+  //   const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+  //   fetch(`/api/v1/votes`, {
+  //     method: 'PUT',
+  //     body: JSON.stringify({review_id: reviewID, user_id: this.state.userID, vote_type: 'down'}),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'X-CSRF-Token': csrfToken
+  //     },
+  //     credentials: 'same-origin'
+  //   })
+  //     .then(response => {
+  //       if (response.ok) {
+  //         return response;
+  //       } else {
+  //         let errorMessage = `${response.status}(${response.statusText})` ,
+  //         error = new Error(errorMessage);
+  //         throw(error);
+  //       }
+  //     })
+  //     .then(response => {
+  //       console.log(response)
+  //     })
+  //     .catch(error => console.error(`Error in fetch: ${error.message}`));
+  // }
 
   render() {
     let reviews
