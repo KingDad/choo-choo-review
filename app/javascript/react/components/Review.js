@@ -11,8 +11,6 @@ class Review extends Component {
       upVotes: this.props.review.up_votes,
       downVotes: this.props.review.down_votes,
       selectedVoteType: this.props.review.current_user_vote_type
-      // currentUserVoteId: this.props.review.current_users_vote
-      // dummyVote: false
     }
   }
 
@@ -30,14 +28,7 @@ class Review extends Component {
     let newUpVotes = this.state.upVotes
     let newDownVotes = this.state.downVotes
     let voteType = this.state.selectedVoteType
-
-    // if (!voteType) {
-    //   this.props.handleUpVote(this.grabID())
-    // } else {
-    //   this.props.handleUpVoteUpdate(this.grabID())
-    // }
     this.props.handleUpVote(this.grabID())
-
     if (this.state.selectedVoteType === "up") {
       newUpVotes -= 1
       this.setState({
@@ -65,12 +56,6 @@ class Review extends Component {
     let newUpVotes = this.state.upVotes
     let newDownVotes = this.state.downVotes
     let voteType = this.state.selectedVoteType
-
-    // if (!voteType) {
-    //   this.props.handleDownVote(this.grabID())
-    // } else {
-    //   this.props.handleDownVoteUpdate(this.grabID())
-    // }
     this.props.handleDownVote(this.grabID())
     if (this.state.selectedVoteType === "down") {
       newDownVotes -= 1
@@ -94,7 +79,6 @@ class Review extends Component {
       })
     }
   }
-
 
   render() {
     return (

@@ -1,5 +1,5 @@
 class TrainSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :founding_year, :user_id, :reviews
+  attributes :id, :name, :description, :founding_year, :user_id
 
   has_many :reviews
 

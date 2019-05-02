@@ -1,5 +1,5 @@
 class ReviewSerializer < ActiveModel::Serializer
-  attributes :id, :rating, :user_id, :description, :up_votes, :down_votes, :votes, :current_user_vote_type
+  attributes :id, :rating, :user_id, :description, :up_votes, :down_votes, :current_user_vote_type
 
   has_many :votes
 
@@ -9,8 +9,4 @@ class ReviewSerializer < ActiveModel::Serializer
       current_user_vote_type = Vote.find_by(user_id: current_user.id, review_id: object.id).vote_type
     end
   end
-
-  # def current_users_vote
-  #   Vote.find_by(user_id: current_user.id, review_id: object.id).id
-  # end
 end
