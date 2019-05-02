@@ -1,5 +1,4 @@
 import React from 'react'
-import Vote from './Vote'
 
 const Review = props => {
   return(
