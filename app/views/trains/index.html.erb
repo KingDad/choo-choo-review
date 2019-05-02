@@ -3,8 +3,8 @@
 <h2>All Available Lines:</h2>
 <div>
   <% if @user %>
-    <% if @user.profile_photo.url %>
-      <%= image_tag @user.profile_photo.url %>
+    <% if current_user[:profile_photo] %>
+      <%= image_tag("/uploads/user/profile_photo/#{current_user.id}/#{current_user.profile_photo.file.file.split("/")[-1]}") %>
     <% end %>
   <% end %>
 <div>
