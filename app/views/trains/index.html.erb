@@ -1,3 +1,4 @@
+
 <h1>CHOO CHOO REVIEW</h1>
 <h2>All Available Lines:</h2>
 <div>
@@ -7,11 +8,11 @@
     <% end %>
   <% end %>
 <div>
-
-<div>
-  <% @trains.each do |train| %>
-    <li>
-    <%= link_to train.name, train_path(train) %>
-    </li>
-  <% end %>
+  <div>
+    <% @trains.each do |train| %>
+      <li>
+      <%= link_to "#{train.name.upcase} LINE", train_path(train) %>
+      </li>
+    <% end %>
+  </div>
 </div>

@@ -7,8 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Train.delete_all
 
-Train.create(name: "Blue Line", description: "this is a description", founding_year: "1872-06-13")
-Train.create(name: "Green Line", description: "this is a green description", founding_year: "1612-06-13")
-Train.create(name: "Red Line", description: "this is a red description", founding_year: "1312-06-13")
-Train.create(name: "Silver Line", description: "this is a silver description", founding_year: "1523-06-13")
-Train.create(name: "Orange Line", description: "this is a orange description", founding_year: "1212-06-13")
+Train.create(name: "red", description: "this is a red description", founding_year: "1872-06-13")
+Train.create(name: "green", description: "this is a green description", founding_year: "1612-06-13")
+Train.create(name: "orange", description: "this is a orange description", founding_year: "1312-06-13")
+Train.create(name: "blue", description: "this is a blue description", founding_year: "1523-06-13")

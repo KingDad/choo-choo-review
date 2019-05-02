@@ -32,18 +32,30 @@ class Train extends Component {
 
   render() {
     let reviews
+    let lineName
+    let reviewsHeaderText
 
     if (this.state.train.reviews) {
-    reviews = this.state.train.reviews.map(review => {
-      return (
-        <Review key={review.id} review={review} />
-      )
-    })
-  }
+      reviews = this.state.train.reviews.map(review => {
+        return (
+          <Review key={review.id} review={review} />
+        )
+      })
+      if (this.state.train.reviews.length > 0) {
+        reviewsHeaderText = "Reviews for This Train Line"
+      }
+    }
+
+
+    if (this.state.train.name) {
+      lineName = `${this.state.train.name.toUpperCase()} LINE`;
+    }
 
     return (
       <div>
-        <h1> {this.state.train.name} </h1>
+        <h1 className={`react-header ${this.state.train.name}`}>{lineName}</h1>
+        <p className="train-description">{this.state.train.description}</p>
+        <h3>{ reviewsHeaderText }</h3>
         { reviews }
         <a href={`/trains/${this.state.train.id}/reviews/new`}>Review This Train</a>
       </div>
