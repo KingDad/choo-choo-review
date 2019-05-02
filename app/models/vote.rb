@@ -1,5 +1,5 @@
 class Vote < ApplicationRecord
-  validates :type, presence: true
+  validates :vote_type, presence: true
   validates :user, presence: true
   validates :review, presence: true
 

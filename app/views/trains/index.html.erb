@@ -1,7 +1,13 @@
-<div class="container">
-  <h1>CHOO CHOO REVIEW</h1>
-  <h2>All Available Lines:</h2>
 
+<h1>CHOO CHOO REVIEW</h1>
+<h2>All Available Lines:</h2>
+<div>
+  <% if @user %>
+    <% if @user.profile_photo.url %>
+      <%= image_tag @user.profile_photo.url %>
+    <% end %>
+  <% end %>
+<div>
   <div>
     <% @trains.each do |train| %>
       <li>
