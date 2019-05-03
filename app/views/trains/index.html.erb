@@ -1,18 +1,25 @@
-
-<h1>CHOO CHOO REVIEW</h1>
-<h2>All Available Lines:</h2>
-<div>
-  <% if @user %>
-    <% if current_user[:profile_photo] %>
-      <%= image_tag("/uploads/user/profile_photo/#{current_user.id}/#{current_user.profile_photo.file.file.split("/")[-1]}") %>
-    <% end %>
-  <% end %>
-<div>
+<div class="container">
+  <h1>CHOO CHOO REVIEW</h1>
+  <div id="underlines">
+    <div id="red-underline"></div>
+    <div id="green-underline"></div>
+    <div id="orange-underline"></div>
+    <div id="blue-underline"></div>
+  </div>
+  <h2>All Available Lines:</h2>
   <div>
-    <% @trains.each do |train| %>
-      <li>
-      <%= link_to "#{train.name.upcase} LINE", train_path(train) %>
-      </li>
+    <% if @user %>
+      <% if current_user[:profile_photo] %>
+        <%= image_tag("/uploads/user/profile_photo/#{current_user.id}/#{current_user.profile_photo.file.file.split("/")[-1]}") %>
+      <% end %>
     <% end %>
+  <div>
+    <div>
+      <% @trains.each do |train| %>
+        <li id=<%= train.name %>>
+        <%= link_to "#{train.name.upcase} LINE", train_path(train) %>
+        </li>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -37,23 +37,45 @@ p{
   color: #ffffff;
   padding-left: 1em;
 }
-.red{
+div>li>a{
+  display: inline-block;
+  height: 100%;
+  padding-left: 1em;
+  width: 100%;
+}
+div>li>a:hover{
+  color: #ffffff;
+}
+.red, #red:hover, button.red:focus{
   background-color: #d9281c;
 }
-.green{
+button.red:hover{
+  background-color: #A61F16;
+}
+.green, #green:hover, button.green:focus{
   background-color: #00843d;
 }
-.orange{
+button.green:hover{
+  background-color: #005226;
+}
+.orange, #orange:hover, button.orange:focus{
   background-color: #ed8b01;
 }
-.blue{
+button.orange:hover{
+  background-color: #BA6D00;
+}
+.blue, #blue:hover, button.blue:focus{
   background-color: #003ca5;
+}
+button.blue:hover{
+  background-color: #002A73;
 }
 button{
   border-radius: 6px;
   color: #ffffff;
   font-family: 'Roboto Condensed', sans-serif;
   margin: 0.5em 1em;
+  padding: 0.5em 0.75em 0.5em 0.5em;
 }
 button>i{
   padding: 0 1em;
@@ -63,4 +85,52 @@ button:active{
 }
 button:focus{
   outline: none;
+}
+div>li{
+  line-height: 1.25em;
+  list-style-type: none;
+  margin: 1em 0;
+}
+div>li>a{
+  color: black;
+}
+li#red, #red-underline{
+  border-bottom: 2px solid #d9281c;
+}
+li#green, #green-underline{
+  border-bottom: 2px solid #00843d;
+}
+li#orange, #orange-underline{
+  border-bottom: 2px solid #ed8b01;
+}
+li#blue, #blue-underline{
+  border-bottom: 2px solid #003ca5;
+}
+div#red-underline, div#green-underline, div#orange-underline, div#blue-underline,
+h1#red-underline, h1#green-underline, h1#orange-underline, h1#blue-underline{
+  border-width: 6px;
+}
+a#red-underline, a#green-underline, a#orange-underline, a#blue-underline{
+  display: inline-block;
+  margin: 1em 2.5em;
+}
+#underlines{
+  font-size: 0;
+}
+#underlines>div{
+  display: inline-block;
+  width: 25%;
+}
+label{
+  display: inline-block;
+  margin: 0 1em;
+}
+label[for="review_description"]{
+  display: block;
+}
+input{
+  cursor: pointer;
+}
+input[type="radio"]{
+  display: inline-block;
 }

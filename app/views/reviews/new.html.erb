@@ -1,9 +1,9 @@
-<h1>Add a New Review for <%=@train.name%></h1>
+<h1 id="<%= @train.name %>-underline">Add a New Review for the <%=@train.name.capitalize%> Line</h1>
 
 <%= form_for [@train, @review] do |f| %>
   <%= f.label :rating, "Rating" %>
   <%=  f.collection_radio_buttons(
-      :rating, [[1, '1'] ,[2, '2'],[3, '3'],[4, '4'],[5, '5']], :first, :last
+      :rating, [[1, ' 1'] ,[2, '  2'],[3, '  3'],[4, '  4'],[5, '  5']], :first, :last, class: "radio-button"
     ) do |b|
       b.label { b.radio_button + b.text }
       end %>
