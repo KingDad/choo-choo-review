@@ -117,7 +117,9 @@ class Train extends Component {
         <p className="train-description">{this.state.train.description}</p>
         <h3>{ reviewsHeaderText }</h3>
         { reviews }
-        <a href={`/trains/${this.state.train.id}/reviews/new`}>Review This Train</a>
+        <a href={`/trains/${this.state.train.id}/reviews/new`} id={`${this.state.train.name}-underline`}>
+          Review This Train
+        </a>
       </div>
     )
   }

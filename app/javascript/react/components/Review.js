@@ -4,7 +4,7 @@ class Review extends Component {
   constructor(props) {
     super(props)
     this.grabID = this.grabID.bind(this)
-    this.getVoteID = this.getVoteID.bind(this)
+    this.starOrStars = this.starOrStars.bind(this)
     this.clickUpVote = this.clickUpVote.bind(this)
     this.clickDownVote = this.clickDownVote.bind(this)
     this.state = {
@@ -18,9 +18,12 @@ class Review extends Component {
     return this.props.review.id
   }
 
-  getVoteID(vote){
-    if (vote.user_id === this.props.userID && vote.review_id === this.grabID()){
-      return vote.id
+  starOrStars(){
+    if (this.props.review.rating > 1) {
+      return `${this.props.review.rating} Stars`
+    }
+    else {
+      return `${this.props.review.rating} Star`
     }
   }
 
@@ -83,7 +86,7 @@ class Review extends Component {
   render() {
     return (
       <div className="review">
-        <p>{this.props.review.rating} Stars -  { this.props.review.description }</p>
+        <p>{this.starOrStars()} -  { this.props.review.description }</p>
         <div className="button-div">
           <button
             className={`up-vote-button ${this.props.color}`}
